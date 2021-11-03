@@ -1,0 +1,46 @@
+<div class="main-div">
+    <div class="address-book">
+        <h1>Address Book</h1>
+        <div class="address-book-main">
+            <div class="address-book-row">
+                <ng-container>
+                    <div class="address-book-cell header">
+                        <label class="custom-check-box">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="address-book-cell header">ID</div>
+                    <div class="address-book-cell header">Name</div>
+                    <div class="address-book-cell header">Location</div>
+                    <div class="address-book-cell header">Phone</div>
+                    <div class="address-book-cell header">Created Date</div>
+                </ng-container>
+                <ng-container *ngFor="let address of addresses; let i = index;">
+                    <div class="address-book-cell">
+                        <label class="custom-check-box">
+                            <input type="checkbox" (click)="check($event, i)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="address-book-cell">{{i + 1}}</div>
+                    <div class="address-book-cell">
+                        <input type="text" [value]="address.name" />
+                    </div>
+                    <div class="address-book-cell">
+                        <input type="text" [value]="address.location" />
+                    </div>
+                    <div class="address-book-cell">
+                        <input type="text" [value]="address.phone" />
+                    </div>
+                    <div class="address-book-cell">{{address.created}}</div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="action-div">
+            <button class="button-1" (click)="delete()">Delete</button>
+            <button class="button-1">Update</button>
+            <button class="button-1" (click)="add()">Add</button>
+        </div>
+    </div>
+</div>
