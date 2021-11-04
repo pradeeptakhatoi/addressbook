@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5 {font-family: 'Roboto', sans-serif;}
 .addr-row {display: block;}
 .address-book-row {display: grid;grid-template-columns: auto auto auto auto auto auto;background-color: #fff;padding: 0;border:1px solid rgba(0, 0, 0, 0.8);}
 .address-book-cell {background-color: rgba(255, 255, 255, 0.8);border: 1px solid rgba(0, 0, 0, 0.8);padding: 10px;font-size: 16px;text-align: center;color: #525252;}
-.address-book-cell input[type="text"]{width: 100%;height: 100%;border: 0;font-size: 16px;text-align: center;color: #525252;}
+.address-book-cell input[type="text"]{width: 100%;height: 100%;border: 0;font-size: 16px;text-align: center;color: #525252; border: 1px solid #CCC;}
 .address-book-cell.header{font-size: 18px;font-weight: 600;background: #eeeeee;color: #404040;}
 h1{font-size: 30px;color: #404040;margin: 20px 0;font-weight: 400;text-align: center;}
 

@@ -5,6 +5,9 @@ export interface Address {
   location: string;
   phone: string;
   created: string;
+  editName?: boolean;
+  editLocation?: boolean;
+  editPhone?: boolean;
 }
 
 @Component({
@@ -15,6 +18,7 @@ export interface Address {
 export class AddressbookComponent implements OnInit {
   public addresses: Address[] = [];
   private checkedList: number[] = [];
+  private rowsModified: number[] = [];
   constructor() { }
 
   ngOnInit(): void {
@@ -52,6 +56,9 @@ export class AddressbookComponent implements OnInit {
       location: "",
       phone: "",
       created: new Date().toISOString().split('T')[0],
+      editName: true,
+      editLocation: true,
+      editPhone: true,
     };
     this.addresses = [...this.addresses, newAddress];
   }
@@ -73,6 +80,15 @@ export class AddressbookComponent implements OnInit {
     }
   }
 
+  public update() {
+    if (this.rowsModified.length > 0) {
+      alert("Row " + this.rowsModified.join(",") + " modified");
+    } else {
+      alert("Nothing to update");
+    }
+    this.rowsModified = [];
+  }
+
   public sort(column: string) {
     if (column === "name") {
       this.addresses = this.addresses.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
@@ -83,6 +99,35 @@ export class AddressbookComponent implements OnInit {
     } else if (column === "created") {
       this.addresses = this.addresses.sort((a, b) => (a.created > b.created) ? 1 : ((b.created > a.created) ? -1 : 0));
     }
+  }
+
+  public doubleClick(e: any, index: number, column: string) {
+    console.log(e, index, column);
+    !this.rowsModified.includes(index) && this.rowsModified.push(index);
+    if (column === "name") {
+      this.addresses[index]['editName'] = true;
+    } else if (column === "location") {
+      this.addresses[index]['editLocation'] = true;
+    } else if (column === "phone") {
+      this.addresses[index]['editPhone'] = true;
+    }
+    this.addresses = [...this.addresses];
+  }
+
+  public onFocusout(e: any, index: number, column: string) {
+    console.log(e, index, column);
+    const updatedValue = e.target.value;
+    if (column === "name") {
+      this.addresses[index]['editName'] = false;
+      this.addresses[index]['name'] = updatedValue;
+    } else if (column === "location") {
+      this.addresses[index]['editLocation'] = false;
+      this.addresses[index]['location'] = updatedValue;
+    } else if (column === "phone") {
+      this.addresses[index]['editPhone'] = false;
+      this.addresses[index]['phone'] = updatedValue;
+    }
+    this.addresses = [...this.addresses];
   }
 
 }
