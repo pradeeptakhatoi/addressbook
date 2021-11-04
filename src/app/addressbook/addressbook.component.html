@@ -11,10 +11,10 @@
                         </label>
                     </div>
                     <div class="address-book-cell header">ID</div>
-                    <div class="address-book-cell header">Name</div>
-                    <div class="address-book-cell header">Location</div>
-                    <div class="address-book-cell header">Phone</div>
-                    <div class="address-book-cell header">Created Date</div>
+                    <div class="address-book-cell header" (click)="sort('name')">Name</div>
+                    <div class="address-book-cell header" (click)="sort('location')">Location</div>
+                    <div class="address-book-cell header" (click)="sort('phone')">Phone</div>
+                    <div class="address-book-cell header" (click)="sort('created')">Created Date</div>
                 </ng-container>
                 <ng-container *ngFor="let address of addresses; let i = index;">
                     <div class="address-book-cell">
